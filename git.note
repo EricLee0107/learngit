@@ -17,3 +17,38 @@
         上上个版本                              HEAD^^
         上N个版本                               HEAD~N
         
+4.撤销修改
+    撤销（丢弃）工作区修改                      git checkout --file
+    撤销缓存区修改                              git reset HEAD file
+    如果修改已经提交到缓存区则需要先从缓存区撤销修改，再从工作区撤销修改：
+    
+5.删除文件
+    删除一个文件                                git rm file
+
+6.推送远程仓库
+    关联一个远程仓库                            git remote add origin git remote add origin https://github.com/EricLee0107/learngit.git
+    d第一次推送master分支的所有内容             git push -u origin master
+    之后每次修改推送                            git push origin master
+
+7.从远程库克隆
+    克隆仓库                                    git clone 仓库地址
+    git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快：
+
+8.创建与合并分支
+    查看分支                                    git branch
+    创建分支                                    git branch <name>
+    切换分支                                    git checkout <name>
+    创建+切换分支                               git checkout -b <name>
+    合并某分支到当前分支                        git merge <name>
+    删除分支                                    git branch -d <name>
+
+9.解决冲突
+    查看分支合并图                              git log --graph
+    git在解决合并冲突时的做法是先将冲突合并起来，然后再手动修改冲突，重新提交，解决冲突。：
+
+10. 分支管理策略
+    分支策略：
+     (1).master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；
+     (2).de时干活的分支，大家从自己的分支时不时的向dev分支上合并
+    git merge --no-ff -m"merger with no-ff" dev  合并分支时加上 --no-ff 参数就可以用普通模式合并，合并后的历史有分支,能够看出来曾经做过合并。fast forward合并无法看出曾经做过合并。
+
