@@ -51,4 +51,62 @@
      (1).master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；
      (2).de时干活的分支，大家从自己的分支时不时的向dev分支上合并
     git merge --no-ff -m"merger with no-ff" dev  合并分支时加上 --no-ff 参数就可以用普通模式合并，合并后的历史有分支,能够看出来曾经做过合并。fast forward合并无法看出曾经做过合并。
+11. Bug分支
+    隐藏当前工作现场                            git stash
+    回到工作现场                                git stash pop  恢复时把stash内容也删除了
+    查看隐藏现场列表                            git stash list 
+    回到指定工作现场                            git stash apply stash@{编号} 恢复后stash内容并不删除，需要git stash drop来删除
+    删除stash内容                               git stash drop
 
+
+12. Feature 分支
+    新的开发功能最好新建一个分支，在开发完成后再合并到主分支上。
+    如果需要丢弃一个没有被合并过的分支，需要强行删除分支
+    强行删除分支                                git branch -D <name>
+
+12. Feature 分支
+    新的开发功能最好新建一个分支，在开发完成后再合并到主分支上。
+    如果需要丢弃一个没有被合并过的分支，需要强行删除分支
+    强行删除分支                                git branch -D <name>
+
+13.多人协作
+    推送分支                                    git push 远程库 本地分支名
+                                                git push origin master
+                                                git push origin dev
+    查看远程库的信息                            git remote
+    查看远程库详细信息                          git remote -v
+    抓取远程的新提交                            git pull
+    建立本地分支和远程分支的关联                git branch --set-upstream branch-name origin/branch-name
+    在本地创建和远程分支对应的分支              git checkout -b branch-name origin/branch-name本地和远程分支的名称最好一致
+
+    本地新建的分支如果不推送到远程，对其他人就是不可见的。
+    哪些分支需要推送
+        master分支是主分支，因此需要时刻与远程同步
+        dev分支时开发分支，团队所有成员都需要在上面工作，所以需要与远程同步
+        bug分支用于在本地修复bug，没必要推送远程
+        feature分支是否推到远程，取决于与你合作的是否在上面开发
+    
+
+
+     多人协作的工作模式：
+        1.首先，可以试图用git push origin branch-name推送自己的修改
+        2.如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并;
+        3.如果合并有冲突，则解决冲突，并在本地提交
+        4.没有冲突或者解决掉冲突后，再用git push origin branch-name 推送就能成功
+     如果git pull提示“no tracking information” 则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream branch-name origin/branch-name
+
+14.创建标签
+    新建标签                                    git tag <name> 默认为HEAD,也可以指定一个commit id;
+    指定标签信息                                git tag -a <tagname> -m"blablabla..."
+    用PGP签名标签                               git tag -s <tagname> -m"blabla..."
+    查看所有标签                                git tag
+
+
+15.操作标签
+    推送一个本地标签                            git push origin <tagname>
+    推送全部未推送过的本地标签                  git push origin --tags
+    删除一个本地标签                            git tag -d <tagname>
+    删除一个远程标签                            git push origin :refs/tags/<tagname>
+
+
+    删除远程标签前需要先删除本地标签
