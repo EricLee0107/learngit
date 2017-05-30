@@ -106,3 +106,10 @@
 
 
     删除远程标签前需要先删除本地标签
+
+16. 忽略特殊文件
+    忽略某些文件时，需要编写.gitignore  （工作区根目录下）
+    .gitignore 文件本身要放到版本库例，并且可以对其做版本管理
+    配置参考 https://github.com/github/gitignore
+
+
