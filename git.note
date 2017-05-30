@@ -1,0 +1,19 @@
+1. 版本库创建
+    初始化git仓库                               git init
+    添加文件到git仓库                           1→git add<file>
+                                                2→git commit -m"log msg"
+2.工作区状态信息
+    查看仓库当前的状态                          git status
+    查看文件修改                                git diff
+
+3.版本回退
+    回退到某个特定版本                          git reset --hard commit_id
+    查看提交历史                                git log
+    查看命令历史                                git reflog
+
+    git版本：
+        当前版本                                HEAD    
+        上一个版本                              HEAD^
+        上上个版本                              HEAD^^
+        上N个版本                               HEAD~N
+        
